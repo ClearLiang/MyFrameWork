@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <Button
+        android:id="@+id/btn_showKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        />
+    <Button
+        android:id="@+id/btn_hideKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_showKey"
+        android:text="hide"
+        />
+    <Button
+        android:id="@+id/btn_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_hideKey"
+        android:text="price"
+        />
+    <Button
+        android:id="@+id/btn_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_price"
+        android:text="number"
+        />
+
+    <RelativeLayout
+        android:id="@+id/rl__keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone" >
+
+        <com.example.a99794.framework.keyboard.MyKeyboardView
+            android:id="@+id/keyboard_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:keyBackground="@drawable/bg_keyboard_btn"
+            android:keyPreviewLayout="@layout/preview_keyboard"
+            android:keyTextColor="@color/black"
+            android:paddingTop="1dp"
+            android:shadowColor="#ffffff"
+            android:shadowRadius="0.0" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_editor"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@id/keyboard_view"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:padding="3dp"
+            android:visibility="gone">
+
+            <com.example.a99794.framework.keyboard.XEditText
+                android:id="@+id/et_amount"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_margin="2dp"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:padding="3dp"
+                android:textColor="#00aeef" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

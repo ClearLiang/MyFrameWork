@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="第一个Fragment"
+        android:textSize="30dp"/>
+
+    <Button
+        android:id="@+id/btn_first_dao_add"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="DAO操作-增加" />
+
+    <Button
+        android:id="@+id/btn_first_dao_delete"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_first_dao_add"
+        android:layout_alignStart="@+id/btn_first_dao_add"
+        android:layout_below="@+id/btn_first_dao_add"
+        android:text="DAO操作-删除" />
+
+    <Button
+        android:id="@+id/btn_first_dao_delete_all"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_first_dao_delete"
+        android:layout_alignBottom="@+id/btn_first_dao_delete"
+        android:layout_toEndOf="@+id/btn_first_dao_delete"
+        android:layout_toRightOf="@+id/btn_first_dao_delete"
+        android:text="DAO操作-全删除" />
+
+    <Button
+        android:id="@+id/btn_first_dao_query"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_first_dao_delete"
+        android:layout_alignStart="@+id/btn_first_dao_delete"
+        android:layout_below="@+id/btn_first_dao_delete"
+        android:text="DAO操作-查找" />
+
+    <Button
+        android:id="@+id/btn_first_dao_query_all"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_first_dao_query"
+        android:layout_alignBottom="@+id/btn_first_dao_query"
+        android:layout_toEndOf="@+id/btn_first_dao_query"
+        android:layout_toRightOf="@+id/btn_first_dao_query"
+        android:text="DAO操作-查找全部" />
+
+    <Button
+        android:id="@+id/btn_first_dao_alter"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_first_dao_query"
+        android:layout_alignStart="@+id/btn_first_dao_query"
+        android:layout_below="@+id/btn_first_dao_query"
+        android:text="DAO操作-修改" />
+</RelativeLayout>

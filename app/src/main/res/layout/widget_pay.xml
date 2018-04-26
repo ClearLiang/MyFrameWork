@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="538px"
+    android:layout_height="80px"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_grey_hollow">
+
+        <ImageView
+            android:id="@+id/iv_pw_1"
+            android:layout_width="88px"
+            android:layout_height="80px"
+            android:src="@drawable/oval_grey"
+            android:visibility="invisible"
+            android:padding="28px" />
+
+        <View
+            android:id="@+id/v_26"
+            android:layout_width="2px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/iv_pw_1"
+            android:background="@color/grey"></View>
+
+        <ImageView
+            android:id="@+id/iv_pw_2"
+            android:layout_width="88px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/v_26"
+            android:src="@drawable/oval_grey"
+            android:visibility="invisible"
+            android:padding="28px"/>
+
+        <View
+            android:id="@+id/v_27"
+            android:layout_width="2px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/iv_pw_2"
+            android:background="@color/grey"></View>
+
+        <ImageView
+            android:id="@+id/iv_pw_3"
+            android:layout_width="88px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/v_27"
+            android:src="@drawable/oval_grey"
+            android:visibility="invisible"
+            android:padding="28px"/>
+
+        <View
+            android:id="@+id/v_28"
+            android:layout_width="2px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/iv_pw_3"
+            android:background="@color/grey"></View>
+
+        <ImageView
+            android:id="@+id/iv_pw_4"
+            android:layout_width="88px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/v_28"
+            android:src="@drawable/oval_grey"
+            android:visibility="invisible"
+            android:padding="28px"/>
+
+        <View
+            android:id="@+id/v_29"
+            android:layout_width="2px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/iv_pw_4"
+            android:background="@color/grey"></View>
+
+        <ImageView
+            android:id="@+id/iv_pw_5"
+            android:layout_width="88px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/v_29"
+            android:src="@drawable/oval_grey"
+            android:visibility="invisible"
+            android:padding="28px"/>
+
+        <View
+            android:id="@+id/v_30"
+            android:layout_width="2px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/iv_pw_5"
+            android:background="@color/grey"></View>
+
+        <ImageView
+            android:id="@+id/iv_pw_6"
+            android:layout_width="88px"
+            android:layout_height="80px"
+            android:layout_toRightOf="@+id/v_30"
+            android:src="@drawable/oval_grey"
+            android:visibility="invisible"
+            android:padding="28px"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <EditText
+        android:id="@+id/et_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/all_1"
+        android:layout_marginLeft="88px"
+        android:layout_marginRight="88px"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"/>
+
+</com.zhy.autolayout.AutoFrameLayout>
+

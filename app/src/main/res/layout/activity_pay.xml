@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--密码界面-->
+    <com.zhy.autolayout.AutoRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="66px"
+        android:layout_marginRight="66px"
+        android:layout_marginTop="280px"
+        android:background="@drawable/bg_corner_white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10px"
+        android:paddingTop="20px"
+        android:id="@+id/autoRelativeLayout">
+
+        <com.example.a99794.framework.view.widget.FontTextView
+            android:id="@+id/tv_pw_dlg_cancel"
+            android:layout_width="100px"
+            android:layout_height="88px"
+            android:gravity="center"
+            android:text="&#xe632;"
+            android:textColor="@color/ev_focus"
+            android:textSize="38px"
+            android:layout_marginLeft="10px"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:textSize="34px"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="88px"
+            android:text="交易密码"
+            android:textColor="@color/black"/>
+
+        <!--设置过交易密码-->
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/arl_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_below="@+id/tv_title">
+            <TextView
+                android:id="@+id/tv_pay_price"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:gravity="center"
+                android:text="99"
+                android:visibility="gone"
+                android:textColor="@color/red"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_pay_price_tip"
+                android:layout_width="match_parent"
+                android:layout_height="46px"
+                android:layout_below="@+id/tv_pay_price"
+                android:gravity="center"
+                android:text="积分"
+                android:visibility="gone"
+                android:textSize="24px" />
+
+            <com.example.a99794.framework.view.widget.PayEdit
+                android:id="@+id/payedit"
+                android:layout_width="wrap_content"
+                android:layout_height="80px"
+                android:layout_below="@+id/tv_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="111px">
+
+            </com.example.a99794.framework.view.widget.PayEdit>
+
+            <TextView
+                android:id="@+id/tv_pay_forget_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="60px"
+                android:layout_below="@+id/payedit"
+                android:text="忘记密码"
+                android:textColor="@color/red"
+                android:textSize="28px"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20px"/>
+
+            <!--<TextView
+                android:id="@+id/iv_pay_price_num_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:text="会员积分数量:***"
+                android:layout_below="@+id/tv_pay_forget_pw"
+                android:textSize="24px"
+                android:gravity="center"
+                android:textColor="@color/red5"
+                android:layout_marginLeft="20px" />
+            <TextView
+                android:id="@+id/iv_pay_price_num"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:text="***"
+                android:layout_below="@+id/tv_pay_forget_pw"
+                android:layout_toRightOf="@+id/iv_pay_price_num_tip"
+                android:textSize="24px"
+                android:gravity="center"
+                android:textColor="@color/red5"/>
+            <TextView
+                android:id="@+id/iv_pay_price_ischeck"
+                android:layout_width="wrap_content"
+                android:layout_height="70px"
+                android:text="@string/credit_member"
+                android:layout_below="@+id/iv_pay_price_num"
+                android:textSize="28px"
+                android:gravity="center"
+                android:drawablePadding="10px"
+                android:textColor="@color/red5"
+                android:drawableLeft="@drawable/check_info"
+                android:layout_marginLeft="20px"/>
+
+
+            <TextView
+                android:id="@+id/iv_pay_genaral_price_num"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:layout_alignParentRight="true"
+                android:text="***"
+                android:layout_below="@+id/tv_pay_forget_pw"
+                android:textSize="24px"
+                android:gravity="center"
+                android:textColor="@color/ev_focus"
+                android:layout_marginRight="20px"/>
+            <TextView
+                android:id="@+id/iv_pay_genaral_price_num_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:text="@string/credit_general_num_tip"
+                android:layout_below="@+id/tv_pay_forget_pw"
+                android:layout_toLeftOf="@+id/iv_pay_genaral_price_num"
+                android:textSize="24px"
+                android:gravity="center"
+                android:textColor="@color/ev_focus"/>
+            <TextView
+                android:id="@+id/iv_pay_genaral_price_ischeck"
+                android:layout_width="wrap_content"
+                android:layout_height="70px"
+                android:layout_alignParentRight="true"
+                android:text="@string/credit_general"
+                android:layout_below="@+id/iv_pay_genaral_price_num"
+                android:textSize="28px"
+                android:gravity="center"
+                android:drawablePadding="10px"
+                android:drawableLeft="@drawable/uncheck_info"
+                android:textColor="@color/ev_focus"
+                android:layout_marginRight="20px"/>-->
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <!--未设置过交易密码-->
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/arl_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@+id/tv_title">
+            <TextView
+                android:id="@+id/tv_tip_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="未设置交易密码"
+                android:padding="30px"
+                android:textColor="@color/ev_focus"
+                android:textSize="28px"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey"
+                android:layout_below="@+id/tv_tip_1">
+            </View>
+
+            <TextView
+                android:id="@+id/tv_quick_setpw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="去设置"
+                android:gravity="center"
+                android:layout_below="@+id/tv_tip_1"
+                android:layout_marginTop="1px"
+                android:textSize="34px"
+                android:textColor="@color/green"
+                android:padding="30px"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+    <!--自定义键盘-->
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/btn_keyboard_key"
+        android:keyPreviewLayout="@layout/key_preview_layout"
+        android:keyTextColor="#000000"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

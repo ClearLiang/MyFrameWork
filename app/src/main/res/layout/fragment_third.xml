@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="用户名"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_user"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/et_fragment_3_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_user"
+        android:layout_alignBottom="@+id/textView_user"
+        android:layout_toEndOf="@+id/textView_user"
+        android:layout_toRightOf="@+id/textView_user" />
+
+    <TextView
+        android:id="@+id/textView_pwd"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/et_fragment_3_username"
+        android:layout_marginTop="30dp"
+        android:text="密码" />
+
+    <EditText
+        android:id="@+id/et_fragment_3_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_pwd"
+        android:layout_alignBottom="@+id/textView_pwd"
+        android:layout_toEndOf="@+id/textView_pwd"
+        android:layout_toRightOf="@+id/textView_pwd" />
+
+    <LinearLayout
+        android:layout_below="@+id/et_fragment_3_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:id="@+id/linearLayout">
+        <CheckBox
+            android:id="@+id/checkbox_fragment_3_remember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:layout_marginRight="100dp"/>
+        <CheckBox
+            android:id="@+id/checkbox_fragment_3_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动登陆"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_fragment_3_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="登陆" />
+
+</RelativeLayout>
