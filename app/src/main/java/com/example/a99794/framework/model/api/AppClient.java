@@ -1,10 +1,16 @@
 package com.example.a99794.framework.model.api;
 
-import com.blankj.utilcode.util.SPUtils;
+import android.os.Environment;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.TimeUtils;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -25,6 +31,10 @@ import static com.example.a99794.framework.model.api.ApiService.API_SERVER_URL;
 public class AppClient {
     public static Retrofit retrofit = null;
 
+    private static final long cacheSize = 1024 * 1024 * 4;// 缓存文件最大限制大小20M
+    private static String cacheDirectory = Environment.getExternalStorageDirectory() + "/okttpcaches"; // 设置缓存文件路径
+    private static Cache cache = new Cache(new File(cacheDirectory), cacheSize);  //
+
 
     public static Retrofit retrofit() {
         if (retrofit == null) {
@@ -32,6 +42,8 @@ public class AppClient {
             /**
              *设置缓存
              */
+            builder.cache(cache);//设置缓存目录和缓存大小
+
 
             /**
              *  拦截器
@@ -46,7 +58,6 @@ public class AppClient {
                             // Provide your custom parameter here
                             // .addQueryParameter("token", User.getUser().getToken())
                             .addQueryParameter("token", SPUtils.getInstance("User&Pwd").getString("token"))
-
                             .build();
                     request = originalRequest.newBuilder().url(modifiedUrl).build();
                     return chain.proceed(request);
@@ -74,6 +85,7 @@ public class AppClient {
             builder.writeTimeout(20, TimeUnit.SECONDS);
             //错误重连
             builder.retryOnConnectionFailure(true);
+
             //以上设置结束，build()
             OkHttpClient okHttpClient = builder.build();
             retrofit = new Retrofit.Builder()

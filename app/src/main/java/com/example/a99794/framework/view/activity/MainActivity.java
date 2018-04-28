@@ -10,13 +10,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.a99794.framework.event.Event;
 import com.example.a99794.framework.presenter.MainPresenter;
 import com.example.a99794.framework.presenter.viewinterface.MainViewInterface;
+import com.example.a99794.framework.utils.EventBusUtils;
 import com.example.a99794.framework.utils.RSAUtils;
 import com.example.a99794.framework.utils.ScanUtils;
 import com.example.a99794.framework.view.base.BaseActivity;
 import com.example.a99794.mytest.R;
 import com.yzq.zxinglibrary.common.Constant;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.crypto.Cipher;
 
@@ -119,6 +125,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainPresenter>
         setClick(btnActivity2, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
+                EventBusUtils.sendDelayedEvent(new Event("asdfghjkl"));
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
                 startActivity(intent);
             }

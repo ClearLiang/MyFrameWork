@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.example.a99794.framework.utils.EventBusUtils;
 import com.example.a99794.mytest.R;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -66,5 +67,27 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
         RxView.clicks(view).throttleFirst(1, TimeUnit.SECONDS).subscribe(action1);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (isRegisterEventBus()) {
+            EventBusUtils.register(this);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBusUtils.unregister(this);
+    }
+
+    /**
+     * 是否注册事件分发
+     *
+     * @return true绑定EventBus事件分发，默认不绑定，子类需要绑定的话复写此方法返回true.
+     */
+    protected boolean isRegisterEventBus() {
+        return false;
+    }
 
 }

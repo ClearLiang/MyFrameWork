@@ -7,11 +7,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.example.a99794.framework.event.FirstEvent;
 import com.example.a99794.framework.presenter.FirstPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstViewInterface;
+import com.example.a99794.framework.utils.EventBusUtils;
 import com.example.a99794.framework.utils.KeyboardUtils;
 import com.example.a99794.framework.view.base.BaseActivity;
 import com.example.a99794.mytest.R;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 /**

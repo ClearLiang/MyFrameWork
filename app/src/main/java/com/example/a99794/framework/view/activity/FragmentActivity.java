@@ -40,7 +40,6 @@ public class FragmentActivity extends BaseActivity<FragmentActivityInterface, Fr
         //initViewPager_1();
     }
 
-
     private void initViewPager() {
         // 创建一个集合,装填Fragment
         ArrayList<Fragment> fragments = new ArrayList<>();

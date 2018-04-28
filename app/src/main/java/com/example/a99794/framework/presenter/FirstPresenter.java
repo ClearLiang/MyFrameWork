@@ -1,18 +1,18 @@
 package com.example.a99794.framework.presenter;
 
 
-import com.blankj.utilcode.util.LogUtils;
+import com.example.a99794.framework.model.bean.UserBean;
 import com.example.a99794.framework.presenter.viewinterface.FirstViewInterface;
 import com.example.a99794.framework.view.base.BasePresenter;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
+import retrofit2.adapter.rxjava.Result;
 import rx.Subscriber;
 
 /**
- * Created by 99794 on 2018/4/13.
- */
+ *@作者 ClearLiang
+ *@日期 2018/4/26
+ *@描述 @desc
+ **/
 
 public class FirstPresenter extends BasePresenter<FirstViewInterface> {
     FirstViewInterface firstViewInterface;
@@ -22,7 +22,7 @@ public class FirstPresenter extends BasePresenter<FirstViewInterface> {
     }
 
     public void register(){
-        addSubscription(apiStores.register("", ""), new Subscriber<ResponseBody>() {
+        addSubscription(apiStores.BlogService(), new Subscriber<Result<UserBean>>() {
             @Override
             public void onCompleted() {
 
@@ -34,13 +34,10 @@ public class FirstPresenter extends BasePresenter<FirstViewInterface> {
             }
 
             @Override
-            public void onNext(ResponseBody responseBody) {
-                try {
-                    LogUtils.i(responseBody.string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onNext(Result<UserBean> userBeanResult) {
+
             }
         });
+
     }
 }

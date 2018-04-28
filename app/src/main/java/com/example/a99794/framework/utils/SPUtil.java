@@ -13,14 +13,14 @@ import android.content.SharedPreferences;
  * 这里没有提供清除单个key的数据，是因为存入相同的数据会自动覆盖，没有必要去理会
  */
 
-public class SPUtils {
+public class SPUtil {
     //定义一个SharePreference对象
     SharedPreferences sharedPreferences;
     //定义一个上下文对象
     Context mContext;
     //创建SharePreference对象时要上下文和存储的模式
     //通过构造方法传入一个上下文
-    public SPUtils(Context context, String fileName) {
+    public SPUtil(Context context, String fileName) {
         mContext = context;
         //实例化SharePreference对象，使用的是get方法，而不是new创建
         //第一个参数是文件的名字

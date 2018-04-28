@@ -2,7 +2,6 @@ package com.example.a99794.framework.utils;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.example.a99794.framework.model.dao.Shop;
-import com.example.a99794.framework.model.dao.ShopDao;
 import com.example.a99794.framework.view.base.BaseApplication;
 
 import org.greenrobot.greendao.query.WhereCondition;

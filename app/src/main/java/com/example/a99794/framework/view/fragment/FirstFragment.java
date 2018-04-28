@@ -9,13 +9,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.a99794.framework.event.Event;
+import com.example.a99794.framework.event.FirstEvent;
 import com.example.a99794.framework.model.dao.Shop;
 import com.example.a99794.framework.model.dao.ShopDao;
 import com.example.a99794.framework.presenter.FirstFragmentPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstFragmentViewInterface;
 import com.example.a99794.framework.utils.DaoUtils;
+import com.example.a99794.framework.utils.EventBusUtils;
 import com.example.a99794.framework.view.base.BaseFragment;
 import com.example.a99794.mytest.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -142,6 +150,7 @@ public class FirstFragment extends BaseFragment<FirstFragmentViewInterface, Firs
                 } else {
                     DaoUtils.getDaoUtils().updateData(shop);
                 }
+
             }
         });
 
@@ -155,4 +164,5 @@ public class FirstFragment extends BaseFragment<FirstFragmentViewInterface, Firs
         btnFirstDaoQueryAll = view.findViewById(R.id.btn_first_dao_query_all);
         btnFirstDaoAlter = view.findViewById(R.id.btn_first_dao_alter);
     }
+
 }

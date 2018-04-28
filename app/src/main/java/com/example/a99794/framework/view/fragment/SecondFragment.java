@@ -1,22 +1,21 @@
 package com.example.a99794.framework.view.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.a99794.framework.adapter.SecondFragmentAdapter;
 import com.example.a99794.framework.presenter.FirstFragmentPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstFragmentViewInterface;
-import com.example.a99794.framework.view.activity.SecondActivity;
+import com.example.a99794.framework.view.base.BaseAdapter;
 import com.example.a99794.framework.view.base.BaseFragment;
 import com.example.a99794.framework.view.widget.GlideImageLoader;
 import com.example.a99794.mytest.R;
@@ -26,18 +25,19 @@ import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- *@作者 ClearLiang
- *@日期 2018/4/13
- *@描述 第二个 fragment
+ * @作者 ClearLiang
+ * @日期 2018/4/13
+ * @描述 第二个 fragment
  **/
 
-public class SecondFragment extends BaseFragment<FirstFragmentViewInterface,FirstFragmentPresenter> implements FirstFragmentViewInterface {
+public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, FirstFragmentPresenter> implements FirstFragmentViewInterface {
     private Banner banner;
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
+    private RecyclerView rvSecond;
+    private ArrayList<String> list_data;
 
     @Override
     protected FirstFragmentPresenter createPresenter() {
@@ -61,17 +61,20 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface,Firs
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_second,container,false);
+        View view = inflater.inflate(R.layout.fragment_second, container, false);
         initData();
+        initView(view);
         initBanner(view);
         return view;
     }
 
-    private void initData(){
+    private void initData() {
         //放图片地址的集合
         list_path = new ArrayList<>();
         //放标题的集合
         list_title = new ArrayList<>();
+
+        list_data  = new ArrayList<>();
 
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg");
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic259ohaj30ci08c74r.jpg");
@@ -81,6 +84,10 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface,Firs
         list_title.add("天天向上");
         list_title.add("热爱劳动");
         list_title.add("不搞对象");
+        for(int i=0;i<10;i++){
+            list_data.add(String.valueOf("结果："+i));
+        }
+
     }
 
     private void initBanner(View view) {
@@ -106,7 +113,7 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface,Firs
         banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                LogUtils.i("你点了第"+(position+1)+"张轮播图");
+                LogUtils.i("你点了第" + (position + 1) + "张轮播图");
             }
         });
         //必须最后调用的方法，启动轮播图。
@@ -115,10 +122,35 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface,Firs
 
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
     }
+
+    private void initView(View view) {
+        rvSecond = view.findViewById(R.id.rv_second);
+
+        rvSecond.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        SecondFragmentAdapter secondFragmentAdapter = new SecondFragmentAdapter(R.layout.item_rv,list_data);
+        secondFragmentAdapter.setItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view) {
+                int position = rvSecond.getChildAdapterPosition(view);
+                ToastUtils.showShort("onItemClick-点击了位置:"+position);
+            }
+
+            @Override
+            public void onItemLongClick(View view) {
+                int position = rvSecond.getChildAdapterPosition(view);
+                ToastUtils.showShort("onItemLongClick-点击了位置:"+position);
+            }
+        });
+        rvSecond.setAdapter(secondFragmentAdapter);
+
+    }
+
 
 }

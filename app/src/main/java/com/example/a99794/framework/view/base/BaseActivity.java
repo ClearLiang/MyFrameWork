@@ -49,7 +49,6 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         // 隐藏软键盘
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         LogUtils.i(getClass().getSimpleName());
-        //注册EventBus
 
         RSAUtils.getRSAUtils().generateRSAKeyPair();
     }
@@ -60,6 +59,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         LogUtils.d("onStart");
         intData();
         initEvent();
+        //注册EventBus
         if (isRegisterEventBus()) {
             EventBusUtils.register(this);
         }
