@@ -9,9 +9,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-
-
-
+/**
+ * @作者 ClearLiang
+ * @日期 2018/4/28
+ * @描述 Socket工具类
+ **/
 public class SocketUtil {
     public static SocketUtil sSocketUtil;
 
@@ -26,8 +28,6 @@ public class SocketUtil {
     }
 
     private Socket mSocket;
-    /*private String ip;
-    private int port;*/
 
     public void connectedSocket(String ip,int port){
         try {
@@ -38,6 +38,7 @@ public class SocketUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void readMessage(String pathName){
@@ -67,6 +68,7 @@ public class SocketUtil {
     public void sendMessage(String msg){
         try {
             OutputStream outToServer = mSocket.getOutputStream();
+            outToServer.flush();
             DataOutputStream out = new DataOutputStream(outToServer);
             out.writeUTF("客户端内容：" + msg);
         }catch(IOException e) {

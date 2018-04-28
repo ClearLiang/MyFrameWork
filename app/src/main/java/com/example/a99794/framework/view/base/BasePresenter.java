@@ -26,7 +26,7 @@ public abstract class BasePresenter<T> implements GlobalConstants{
     private CompositeSubscription mCompositeSubscription;
 
     public void attachView(T view) {
-        mViewRef = new WeakReference<T>(view);
+        mViewRef = new WeakReference<>(view);
         apiStores = AppClient.retrofit().create(ApiService.class);
     }
 

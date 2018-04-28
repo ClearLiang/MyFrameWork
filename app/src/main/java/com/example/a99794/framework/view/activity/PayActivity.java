@@ -49,6 +49,7 @@ public class PayActivity extends BaseActivity<PayViewInterface, PayPresenter> im
 
         Intent intent = getIntent();
         flag = intent.getStringExtra("key");
+
         keyboardUtil = new KeyboardUtils(PayActivity.this, payedit.getCurrentEdit());
         keyboardUtil.setPreviewEnabled(true);
 

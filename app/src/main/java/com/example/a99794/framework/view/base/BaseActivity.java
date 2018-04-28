@@ -23,9 +23,9 @@ import java.util.concurrent.TimeUnit;
 import rx.functions.Action1;
 
 /**
- *@作者 ClearLiang
- *@日期 2018/4/13
- *@描述 Activity的基类
+ * @作者 ClearLiang
+ * @日期 2018/4/13
+ * @描述 Activity的基类
  **/
 
 abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppCompatActivity implements GlobalConstants{
@@ -119,12 +119,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
-    /**
-     * Rx点击事件防抖动
-     *
-     * @param view
-     * @param action1
-     */
+    /**  Rx点击事件防抖动  */
     protected void setClick(View view, Action1<Void> action1) {
         RxView.clicks(view).throttleFirst(1, TimeUnit.SECONDS).subscribe(action1);
     }
@@ -137,7 +132,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         return false;
     }
 
-    /**显示支付密码键盘 */
+    /**  显示支付密码键盘  */
     protected void showKeyBoard(final Activity activity, final EditText editText) {
         editText.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -154,7 +149,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
 
 
     }
-    /**显示安全键盘*/
+    /**  显示安全键盘  */
     protected void showSafeKeyBoard(final Activity activity, final EditText editText){
         keyBoardDialogUtils = new KeyBoardDialogUtils(activity,editText);
 
@@ -167,7 +162,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
 
     }
 
-    /**隐藏键盘 */
+    /**  隐藏键盘  */
     protected void hideKeyboard() {
         if(keyboardUtils != null){
             keyboardUtils.hideKeyboard();
@@ -177,7 +172,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         }
     }
 
-    /**点击空白处键盘消失，默认消失*/
+    /**  点击空白处键盘消失，默认消失  */
     protected void setOnTouchEvent(boolean flag){
         isTouchEvent = flag;
     }

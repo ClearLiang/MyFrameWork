@@ -48,7 +48,7 @@ dependencies {
     // 扫一扫
     implementation 'com.github.yuzhiqiang1993:zxing:2.1.4'
     // BlankJ工具类
-    compile 'com.blankj:utilcode:1.11.1'
+    compile 'com.blankj:utilcode:1.13.3'
     // 控件的Rx监听
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.1'
     // EventBus事件

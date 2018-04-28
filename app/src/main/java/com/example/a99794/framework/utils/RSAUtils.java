@@ -13,6 +13,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -20,6 +21,8 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import android.util.Base64;
+
+import com.blankj.utilcode.util.LogUtils;
 
 public class RSAUtils {
     private static RSAUtils sRSAUtils;
@@ -92,6 +95,43 @@ public class RSAUtils {
             cipher.init(mode, key);
             //处理数据
             resultBytes = cipher.doFinal(srcData);
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+
+        return resultBytes;
+    }
+
+    /**
+     * 加密或解密数据的通用方法
+     *
+     * @param srcData 待处理的数据
+     * @param key     公钥或者私钥
+     * @param mode    指定是加密还是解密，值为Cipher.ENCRYPT_MODE或者Cipher.DECRYPT_MODE
+     */
+    public byte[] processDataByString(String srcData, Key key, int mode) {
+
+        byte[] srcData1 = srcData.getBytes();
+        //用来保存处理结果
+        byte[] resultBytes = null;
+
+        try {
+
+            //构建Cipher对象，需要传入一个字符串，格式必须为"algorithm/mode/padding"或者"algorithm/",意为"算法/加密模式/填充方式"
+            Cipher cipher = Cipher.getInstance("RSA/NONE/PKCS1Padding");
+            //初始化Cipher，mode指定是加密还是解密，key为公钥或私钥
+            cipher.init(mode, key);
+            //处理数据
+            resultBytes = cipher.doFinal(srcData1);
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

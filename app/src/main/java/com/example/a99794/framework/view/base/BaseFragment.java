@@ -68,11 +68,17 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         if (isRegisterEventBus()) {
             EventBusUtils.register(this);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     @Override

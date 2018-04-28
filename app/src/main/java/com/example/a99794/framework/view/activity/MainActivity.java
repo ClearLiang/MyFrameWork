@@ -24,6 +24,8 @@ import com.yzq.zxinglibrary.common.Constant;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.Arrays;
+
 import javax.crypto.Cipher;
 
 import rx.functions.Action1;
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainPresenter>
     private EditText etCreate;
 
     byte[] result,result1;
+    String resultBefore,resultAfter;
 
     @Override
     protected MainPresenter createPresenter() {
@@ -81,22 +84,13 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainPresenter>
         setClick(btnScan, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                ScanUtils.getScanUtils().startScan(MainActivity.this, REQUEST_SCAN_CODE);
+                //ScanUtils.getScanUtils().startScan(MainActivity.this, REQUEST_SCAN_CODE);
+
+                mBundle.putString("key",etCreate.getText().toString());
+                openActivity(PayActivity.class,mBundle);
             }
         });
-        setClick(btnCreate, new Action1<Void>() {
-            @Override
-            public void call(Void aVoid) {
-                /*bitmap = ScanUtils.getScanUtils().startCreate(MainActivity.this, etCreate.getText().toString());
-                image.setImageBitmap(bitmap);*/
 
-                byte[] srcData = {12};
-                LogUtils.i("加密前的东西："+srcData[0]);
-                result = RSAUtils.getRSAUtils().processData(srcData,RSAUtils.getRSAUtils().getPublicKey(), Cipher.ENCRYPT_MODE);
-                LogUtils.i("加密后的东西："+result);
-
-            }
-        });
         image.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -104,20 +98,38 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainPresenter>
                 return false;
             }
         });
+
+        setClick(btnCreate, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                /*bitmap = ScanUtils.getScanUtils().startCreate(MainActivity.this, etCreate.getText().toString());
+                image.setImageBitmap(bitmap);*/
+
+                byte[] srcData = etCreate.getText().toString().getBytes();//String转换为byte[]
+                LogUtils.i("加密前的东西："+etCreate.getText().toString());
+                result = RSAUtils.getRSAUtils().processData(srcData,RSAUtils.getRSAUtils().getPublicKey(), Cipher.ENCRYPT_MODE);
+                resultBefore = new String(result);
+                LogUtils.i("加密后的东西："+resultBefore);
+
+            }
+        });
+
         setClick(btnShowkey, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
                 //openActivity(FirstActivity.class);
-                LogUtils.i("解密前的东西："+result);
+
+                String rs = new String(result);
+                LogUtils.i("解密前的东西："+rs);
                 result1 = RSAUtils.getRSAUtils().processData(result,RSAUtils.getRSAUtils().getPrivateKey(),Cipher.DECRYPT_MODE);
-                LogUtils.i("解密后的东西："+result1[0]);
+                resultAfter = new String(result1);
+                LogUtils.i("解密后的东西："+resultAfter);
+
             }
         });
         setClick(btnNext, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                /*mBundle.putString("key",etCreate.getText().toString());
-                openActivity(PayActivity.class,mBundle);*/
                 openActivity(FragmentActivity.class);
             }
         });
@@ -125,9 +137,8 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainPresenter>
         setClick(btnActivity2, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                EventBusUtils.sendDelayedEvent(new Event("asdfghjkl"));
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(intent);
+                EventBusUtils.sendDelayedEvent(new Event("100asd8611"));
+                openActivity(SecondActivity.class);
             }
         });
 

@@ -1,6 +1,11 @@
 package com.example.a99794.framework.view.fragment;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,13 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.a99794.framework.adapter.SecondFragmentAdapter;
 import com.example.a99794.framework.presenter.FirstFragmentPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstFragmentViewInterface;
+import com.example.a99794.framework.service.BindService;
 import com.example.a99794.framework.view.base.BaseAdapter;
 import com.example.a99794.framework.view.base.BaseFragment;
 import com.example.a99794.framework.view.widget.GlideImageLoader;
@@ -25,6 +31,8 @@ import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
+
+import static android.content.Context.BIND_AUTO_CREATE;
 
 /**
  * @作者 ClearLiang
@@ -39,14 +47,16 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
     private RecyclerView rvSecond;
     private ArrayList<String> list_data;
 
+    private BindService bindService = null;
+    private boolean isBound = false;
+    private Intent intent = null;
+    private Button button,button2,button3,button4;
+    private Context mContext;
+
+
     @Override
     protected FirstFragmentPresenter createPresenter() {
         return new FirstFragmentPresenter(this);
-    }
-
-    @Override
-    protected void initEvent() {
-
     }
 
     public static SecondFragment newInstance() {
@@ -58,6 +68,49 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
         return fragment;
     }
 
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            isBound = true;
+            BindService.MyBinder binder = (BindService.MyBinder) iBinder;
+            bindService = binder.getService();
+            int num = bindService.getRandomNumber();
+            LogUtils.i("numA=" + num);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    protected void initEvent() {
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getContext(), BindService.class);
+                intent.putExtra("from", "ActivityA");
+                mContext.bindService(intent, conn, BIND_AUTO_CREATE);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isBound = false;
+                mContext.unbindService(conn);
+            }
+        });
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,7 +118,28 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
         initData();
         initView(view);
         initBanner(view);
+        initRecyclerView();
         return view;
+    }
+
+    private void initRecyclerView() {
+        rvSecond.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        SecondFragmentAdapter secondFragmentAdapter = new SecondFragmentAdapter(R.layout.item_rv, list_data);
+        secondFragmentAdapter.setItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view) {
+                int position = rvSecond.getChildAdapterPosition(view);
+                ToastUtils.showShort("onItemClick-点击了位置:" + position);
+            }
+
+            @Override
+            public void onItemLongClick(View view) {
+                int position = rvSecond.getChildAdapterPosition(view);
+                ToastUtils.showShort("onItemLongClick-点击了位置:" + position);
+            }
+        });
+        rvSecond.setAdapter(secondFragmentAdapter);
     }
 
     private void initData() {
@@ -74,7 +148,7 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
         //放标题的集合
         list_title = new ArrayList<>();
 
-        list_data  = new ArrayList<>();
+        list_data = new ArrayList<>();
 
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg");
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic259ohaj30ci08c74r.jpg");
@@ -84,8 +158,8 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
         list_title.add("天天向上");
         list_title.add("热爱劳动");
         list_title.add("不搞对象");
-        for(int i=0;i<10;i++){
-            list_data.add(String.valueOf("结果："+i));
+        for (int i = 0; i < 10; i++) {
+            list_data.add(String.valueOf("结果：" + i));
         }
 
     }
@@ -122,7 +196,6 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
 
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -131,25 +204,10 @@ public class SecondFragment extends BaseFragment<FirstFragmentViewInterface, Fir
 
     private void initView(View view) {
         rvSecond = view.findViewById(R.id.rv_second);
-
-        rvSecond.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        SecondFragmentAdapter secondFragmentAdapter = new SecondFragmentAdapter(R.layout.item_rv,list_data);
-        secondFragmentAdapter.setItemClickListener(new BaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view) {
-                int position = rvSecond.getChildAdapterPosition(view);
-                ToastUtils.showShort("onItemClick-点击了位置:"+position);
-            }
-
-            @Override
-            public void onItemLongClick(View view) {
-                int position = rvSecond.getChildAdapterPosition(view);
-                ToastUtils.showShort("onItemLongClick-点击了位置:"+position);
-            }
-        });
-        rvSecond.setAdapter(secondFragmentAdapter);
-
+        button   = view.findViewById(R.id.button);
+        button2  = view.findViewById(R.id.button2);
+        button3  = view.findViewById(R.id.button3);
+        button4  = view.findViewById(R.id.button4);
     }
 
 
