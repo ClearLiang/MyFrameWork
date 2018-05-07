@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.a99794.framework.view.fragment.FirstFragment;
 import com.example.a99794.framework.view.fragment.SecondFragment;
 import com.example.a99794.framework.view.fragment.ThirdFragment;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 /**
  *@作者 ClearLiang

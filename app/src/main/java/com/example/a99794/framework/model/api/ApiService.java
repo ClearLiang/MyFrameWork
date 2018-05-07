@@ -33,4 +33,6 @@ public interface ApiService {
     /*获取到返回的Header和响应码的,用Observable<Result<T>> 代替 Observable<T>*/
     @GET("")
     Observable<Result<UserBean>> BlogService();
+
+
 }

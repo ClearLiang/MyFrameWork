@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.example.a99794.framework.utils.EventBusUtils;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;

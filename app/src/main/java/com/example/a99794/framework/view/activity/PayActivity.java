@@ -6,15 +6,15 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.example.a99794.framework.presenter.PayPresenter;
+import com.example.a99794.framework.presenter.PayActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.EditCompleListener;
 import com.example.a99794.framework.presenter.viewinterface.PayViewInterface;
 import com.example.a99794.framework.utils.KeyboardUtils;
 import com.example.a99794.framework.view.base.BaseActivity;
 import com.example.a99794.framework.view.widget.FontTextView;
 import com.example.a99794.framework.view.widget.PayEdit;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
+import com.yzq.zxinglibrary.common.Constant;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import rx.functions.Action1;
@@ -25,11 +25,11 @@ import rx.functions.Action1;
  *@描述 密码支付界面
  **/
 
-public class PayActivity extends BaseActivity<PayViewInterface, PayPresenter> implements PayViewInterface {
+public class PayActivity extends BaseActivity<PayViewInterface, PayActivityPresenter> implements PayViewInterface {
     private PayEdit payedit;
     private KeyboardUtils keyboardUtil = null;
     private FontTextView tvPwDlgCancel;
-    private String flag = "0"; //0设置了密码  1未设置密码
+    private String flag = "0"; // 0设置了密码  1未设置密码
     private AutoRelativeLayout arl1;
     private AutoRelativeLayout arl2;
     private TextView tvQuickSetpw;
@@ -77,7 +77,14 @@ public class PayActivity extends BaseActivity<PayViewInterface, PayPresenter> im
         payedit.setEditCompleListener(new EditCompleListener() {
             @Override
             public void onNumCompleted(String num) {
-                LogUtils.i("收到PayEdit结果：" + num);
+                //LogUtils.i("PayActivity收到PayEdit结果：" + num);
+                //数据是使用Intent返回
+                Intent intent = new Intent();
+                //把返回数据存入Intent
+                intent.putExtra(Constant.CODED_CONTENT, num);
+                //设置返回数据
+                setResult(RESULT_OK, intent);
+                //关闭Activity
                 finish();
             }
         });
@@ -99,8 +106,8 @@ public class PayActivity extends BaseActivity<PayViewInterface, PayPresenter> im
 
 
     @Override
-    protected PayPresenter createPresenter() {
-        return new PayPresenter(this);
+    protected PayActivityPresenter createPresenter() {
+        return new PayActivityPresenter(this);
     }
 
 }

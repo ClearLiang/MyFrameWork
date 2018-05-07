@@ -20,7 +20,7 @@ import com.example.a99794.framework.presenter.FirstFragmentPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstFragmentViewInterface;
 import com.example.a99794.framework.utils.SPUtil;
 import com.example.a99794.framework.view.base.BaseFragment;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

@@ -1,70 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.zhy.autolayout.AutoRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_Scan"
-        android:text="扫描"
+    <LinearLayout
+        android:id="@+id/ll_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Scan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="扫描" />
+
+        <Button
+            android:id="@+id/btn_Create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="生成" />
+
+        <Button
+            android:id="@+id/btn_login_other"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="三方登陆" />
+
+        <Button
+            android:id="@+id/btn_finger"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="指纹验证" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/et_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_Scan"/>
+        android:layout_below="@+id/ll_1"/>
 
-    <Button
-        android:id="@+id/btn_create"
-        android:text="加密"
-        android:layout_width="wrap_content"
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_create"/>
+        android:orientation="horizontal"
+        android:layout_below="@id/et_create">
 
-    <Button
-        android:id="@+id/btn_activity_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_create"
-        android:layout_toEndOf="@+id/btn_create"
-        android:layout_toRightOf="@+id/btn_create"
-        android:text="第二个activity" />
+        <Button
+            android:id="@+id/btn_encryption"
+            android:text="加密"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
-    <Button
-        android:id="@+id/btn_showkey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btn_create"
-        android:text="解密" />
+        <Button
+            android:id="@+id/btn_decryption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="解密" />
 
-    <Button
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_progressbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="进度条" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_create"
-        android:layout_toEndOf="@+id/btn_create"
-        android:layout_toRightOf="@+id/btn_create"
-        android:text="跳转fragment" />
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_2">
+
+        <Button
+            android:id="@+id/btn_activity_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="第二个activity" />
+
+        <Button
+            android:id="@+id/btn_fragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="跳转fragment" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_3">
+
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="支付界面一/发送通知" />
+
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="支付界面二/消除通知" />
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/iv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_next"
+        android:layout_below="@+id/ll_4"
         android:layout_centerHorizontal="true"/>
+
     <TextView
         android:id="@+id/tv_scan_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/image"
-        android:text="结果"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="246dp" />
+        android:layout_below="@+id/iv_main"
+        android:text="结果" />
+
+    <com.example.a99794.framework.view.widget.CirclePgBar
+        android:id="@+id/circle_pgbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_scan_result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
     <android.inputmethodservice.KeyboardView
         android:id="@+id/keyboard_view"
@@ -79,4 +158,6 @@
         android:keyPreviewLayout="@layout/key_preview_layout"
         android:keyTextColor="#000000"/>
 
-</RelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

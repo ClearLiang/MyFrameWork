@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 /**
  *@作者 ClearLiang
@@ -73,14 +73,14 @@ public class KeyboardUtils {
 
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
-            LogUtils.i(primaryCode);
+            //LogUtils.i(primaryCode);
             Editable editable = ed.getText();
             int start = ed.getSelectionStart();
-            LogUtils.i("start = "+start);
+            //LogUtils.i("start = "+start);
             if (primaryCode == Keyboard.KEYCODE_CANCEL) {// 完成
                 hideKeyboard();
             } else if (primaryCode == Keyboard.KEYCODE_DELETE) {// 回退
-                LogUtils.i("点击回退键之前的值--"+editable.toString());
+                //LogUtils.i("点击回退键之前的值--"+editable.toString());
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
                         editable.delete(start - 1, start);

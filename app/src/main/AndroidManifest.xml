@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.a99794.mytest">
+    package="com.example.a99794.framework">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -55,8 +57,23 @@
         <activity
             android:name="com.example.a99794.framework.view.activity.FragmentActivity" />
 
+        <activity
+            android:name="com.example.a99794.framework.view.activity.MyNotificationActivity" />
+
+        <activity
+            android:name="com.example.a99794.framework.view.activity.ThirdActivity" />
+
+        <!-- 微信登陆配置 start -->
+        <activity
+            android:name="com.example.a99794.framework.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:theme="@style/wx_login_style"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <!-- 微信登陆配置 end -->
+
         <service android:name="com.example.a99794.framework.service.RemindService" />
         <service android:name="com.example.a99794.framework.service.BindService" />
+        <service android:name="com.example.a99794.framework.service.MyIntentService" />
 
     </application>
 

@@ -5,18 +5,20 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.ServiceUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.a99794.framework.event.Event;
 import com.example.a99794.framework.presenter.SecondActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.SecondViewInterface;
 import com.example.a99794.framework.service.BindService;
+import com.example.a99794.framework.utils.FingerprintUtil;
 import com.example.a99794.framework.view.base.BaseActivity;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -92,6 +94,7 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
                 }
             }
         });
+
     }
 
     @Override
@@ -105,6 +108,7 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
         setContentView(R.layout.activity_second);
 
         initView();
+
     }
 
     private void initView() {

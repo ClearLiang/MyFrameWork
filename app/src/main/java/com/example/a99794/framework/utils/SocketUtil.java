@@ -41,7 +41,7 @@ public class SocketUtil {
 
     }
 
-    public void readMessage(String pathName){
+    public void readMessageToClient(String pathName){
         try {
             // 创建一个InputStream用户读取要发送的文件。
             InputStream inputStream = new FileInputStream(pathName);
@@ -65,7 +65,7 @@ public class SocketUtil {
 
     }
 
-    public void sendMessage(String msg){
+    public void sendMessageToClient(String msg){
         try {
             OutputStream outToServer = mSocket.getOutputStream();
             outToServer.flush();
@@ -76,7 +76,7 @@ public class SocketUtil {
         }
     }
 
-    public void getMessage(){
+    public void getMessageFromClient(){
         try {
             InputStream inFromServer = mSocket.getInputStream();
             DataInputStream in = new DataInputStream(inFromServer);
@@ -86,7 +86,7 @@ public class SocketUtil {
         }
     }
 
-    public void close(){
+    public void closeSocket(){
         try {
             mSocket.close();
         } catch (IOException e) {

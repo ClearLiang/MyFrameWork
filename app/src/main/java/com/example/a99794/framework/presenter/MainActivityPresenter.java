@@ -24,10 +24,10 @@ import java.io.IOException;
  * Created by 99794 on 2018/4/13.
  */
 
-public class MainPresenter extends BasePresenter<MainViewInterface> {
+public class MainActivityPresenter extends BasePresenter<MainViewInterface> {
     private MainViewInterface mainViewInterface;
 
-    public MainPresenter(MainViewInterface mainViewInterface) {
+    public MainActivityPresenter(MainViewInterface mainViewInterface) {
         this.mainViewInterface = mainViewInterface;
     }
 

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 /**
  *@作者 ClearLiang

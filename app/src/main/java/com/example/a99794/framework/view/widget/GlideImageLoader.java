@@ -8,8 +8,10 @@ import com.bumptech.glide.Glide;
 import com.youth.banner.loader.ImageLoader;
 
 /**
- * Created by 99794 on 2018/4/25.
- */
+ * @作者 ClearLiang
+ * @日期 2018/5/4
+ * @描述 图片加载器
+ **/
 
 public class GlideImageLoader extends ImageLoader {
     @Override

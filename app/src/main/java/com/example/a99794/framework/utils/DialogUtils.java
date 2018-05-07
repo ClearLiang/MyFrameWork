@@ -9,11 +9,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 /**
- * Created by 99794 on 2018/4/13.
- */
+ * @作者 ClearLiang
+ * @日期 2018/5/4
+ * @描述 对话框工具
+ **/
 
 public class DialogUtils {
     private static DialogUtils dialogUtils;

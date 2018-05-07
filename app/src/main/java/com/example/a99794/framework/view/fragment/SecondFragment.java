@@ -24,7 +24,7 @@ import com.example.a99794.framework.service.BindService;
 import com.example.a99794.framework.view.base.BaseAdapter;
 import com.example.a99794.framework.view.base.BaseFragment;
 import com.example.a99794.framework.view.widget.GlideImageLoader;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;

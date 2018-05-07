@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.a99794.framework.presenter.viewinterface.EditCompleListener;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 import com.zhy.autolayout.AutoLinearLayout;
 
 ;

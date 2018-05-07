@@ -8,11 +8,11 @@ import com.example.a99794.framework.view.base.BasePresenter;
  * Created by 99794 on 2018/4/17.
  */
 
-public class PayPresenter extends BasePresenter<PayViewInterface> {
+public class PayActivityPresenter extends BasePresenter<PayViewInterface> {
 
     PayViewInterface payViewInterface;
 
-    public PayPresenter(PayViewInterface payViewInterface) {
+    public PayActivityPresenter(PayViewInterface payViewInterface) {
         this.payViewInterface = payViewInterface;
     }
 

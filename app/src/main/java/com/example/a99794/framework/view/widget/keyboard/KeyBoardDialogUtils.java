@@ -16,7 +16,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

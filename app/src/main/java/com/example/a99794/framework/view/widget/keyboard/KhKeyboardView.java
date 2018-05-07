@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 import java.util.List;
 

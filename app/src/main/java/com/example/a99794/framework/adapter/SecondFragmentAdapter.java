@@ -2,7 +2,7 @@ package com.example.a99794.framework.adapter;
 
 import com.example.a99794.framework.view.base.BaseAdapter;
 import com.example.a99794.framework.view.base.BaseHolder;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 
 import java.util.List;
 

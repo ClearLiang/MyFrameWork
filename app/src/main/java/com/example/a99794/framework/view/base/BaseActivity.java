@@ -15,7 +15,7 @@ import com.example.a99794.framework.utils.EventBusUtils;
 import com.example.a99794.framework.utils.KeyboardUtils;
 import com.example.a99794.framework.utils.RSAUtils;
 import com.example.a99794.framework.view.widget.keyboard.KeyBoardDialogUtils;
-import com.example.a99794.mytest.R;
+import com.example.a99794.framework.R;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -101,14 +101,24 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
-    protected void openActivityForResult(Class<?> mClass, int requestCode,Class mReClass) {
+    protected void openActivityForResult(Class<?> mClass, int requestCode) {
+        openActivityForResult(mClass,requestCode,null);
+    }
+
+    protected void openActivityForResult(Class<?> mClass, int requestCode,Bundle bundle) {
         Intent mIntent = new Intent(this, mClass);
-        String className = mReClass.toString().substring(6);
-        mBundle.putString("DataToClass", className);
-        mIntent.putExtras(mBundle);
+        if(bundle != null){
+            mIntent.putExtras(bundle);
+        }
         startActivityForResult(mIntent, requestCode);
         // 设置开关Activity的动画
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
+
+    protected void openService(Class<?> mClass, Bundle bundle){
+        Intent intent = new Intent(this, mClass);
+        intent.putExtras(bundle);
+        startService(intent);
     }
 
     @Override

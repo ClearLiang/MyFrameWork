@@ -12,9 +12,9 @@ import com.example.a99794.framework.model.dao.DaoSession;
 
 
 /**
- *@作者 ClearLiang
- *@日期 2018/4/13
- *@描述 APP全局
+ * @作者 ClearLiang
+ * @日期 2018/4/13
+ * @描述 APP全局
  * 这里可以加上对于Android 设备特有硬件的操作，如扫码、拍照、录像、数据库创建
  **/
 

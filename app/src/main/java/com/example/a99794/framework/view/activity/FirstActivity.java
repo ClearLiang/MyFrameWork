@@ -1,22 +1,14 @@
 package com.example.a99794.framework.view.activity;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.example.a99794.framework.event.FirstEvent;
-import com.example.a99794.framework.presenter.FirstPresenter;
+import com.example.a99794.framework.presenter.FirstActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstViewInterface;
-import com.example.a99794.framework.utils.EventBusUtils;
-import com.example.a99794.framework.utils.KeyboardUtils;
 import com.example.a99794.framework.view.base.BaseActivity;
-import com.example.a99794.mytest.R;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.example.a99794.framework.R;
 
 
 /**
@@ -25,7 +17,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * @描述 第一个Activity
  **/
 
-public class FirstActivity extends BaseActivity<FirstViewInterface, FirstPresenter> implements FirstViewInterface {
+public class FirstActivity extends BaseActivity<FirstViewInterface, FirstActivityPresenter> implements FirstViewInterface {
 
 
     private TextView tvFirstLogin;
@@ -55,8 +47,8 @@ public class FirstActivity extends BaseActivity<FirstViewInterface, FirstPresent
     }
 
     @Override
-    protected FirstPresenter createPresenter() {
-        return new FirstPresenter(this);
+    protected FirstActivityPresenter createPresenter() {
+        return new FirstActivityPresenter(this);
     }
 
     private void initView() {

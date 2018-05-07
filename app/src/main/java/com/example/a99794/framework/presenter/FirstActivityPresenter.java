@@ -14,10 +14,10 @@ import rx.Subscriber;
  *@描述 @desc
  **/
 
-public class FirstPresenter extends BasePresenter<FirstViewInterface> {
+public class FirstActivityPresenter extends BasePresenter<FirstViewInterface> {
     FirstViewInterface firstViewInterface;
 
-    public FirstPresenter(FirstViewInterface firstViewInterface) {
+    public FirstActivityPresenter(FirstViewInterface firstViewInterface) {
         this.firstViewInterface = firstViewInterface;
     }
 
