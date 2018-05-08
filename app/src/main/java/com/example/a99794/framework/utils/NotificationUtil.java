@@ -20,7 +20,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  * @描述 消息通知工具
  **/
 
-public class NotificationUtils  {
+public class NotificationUtil {
     private static Context mContext;
     private NotificationManager mNManager;
     private Notification notification;
@@ -28,16 +28,16 @@ public class NotificationUtils  {
     private static final int NOTIFYID_1 = 1;
     private int a= 1;
 
-    private NotificationUtils() {
+    private NotificationUtil() {
     }
 
-    public static  NotificationUtils getNotificationUtils(Context context) {
+    public static NotificationUtil getNotificationUtils(Context context) {
         mContext = context;
-        return NotificationUtilsHolder.sNotificationUtils;
+        return NotificationUtilsHolder.S_NOTIFICATION_UTIL;
     }
 
     private static class NotificationUtilsHolder{
-        private static final NotificationUtils sNotificationUtils = new NotificationUtils();
+        private static final NotificationUtil S_NOTIFICATION_UTIL = new NotificationUtil();
     }
 
     public void showNotification(RemoteViews remoteViews,PendingIntent pendingIntent){
@@ -119,6 +119,8 @@ public class NotificationUtils  {
         }
     }
 
-
+    public void updataNotification(){
+        mNManager.notify(NOTIFYID_1, notification);
+    }
 
 }

@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.example.a99794.framework.utils.EventBusUtils;
+import com.example.a99794.framework.utils.EventBusUtil;
 import com.example.a99794.framework.R;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -71,7 +71,7 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (isRegisterEventBus()) {
-            EventBusUtils.register(this);
+            EventBusUtil.register(this);
         }
     }
 
@@ -84,7 +84,7 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBusUtils.unregister(this);
+        EventBusUtil.unregister(this);
     }
 
     /**

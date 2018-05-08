@@ -17,18 +17,18 @@ import com.example.a99794.framework.R;
  *@描述 在布局文件中加入 <android.inputmethodservice.KeyboardView>
  *     并设置android:id="@+id/keyboard_view"   （通用一个id）
  *     在onCreate()中调用showKeyBoard()
- *     或者 keyboardUtil = new KeyboardUtils(activity_pay.this, mEdit);
+ *     或者 keyboardUtil = new KeyboardUtil(activity_pay.this, mEdit);
  *     keyboardUtil.showKeyboard();
  **/
 
-public class KeyboardUtils {
+public class KeyboardUtil {
 
     private KeyboardView keyboardView;
     private Keyboard k2;// 数字键盘
     private EditText ed;
     private boolean isPre = true;
 
-    public KeyboardUtils(Activity act, EditText edit) {
+    public KeyboardUtil(Activity act, EditText edit) {
         this.ed = edit;
         k2 = new Keyboard(act, R.xml.keyboard_numbers_my);
         keyboardView = act.findViewById(R.id.keyboard_view);

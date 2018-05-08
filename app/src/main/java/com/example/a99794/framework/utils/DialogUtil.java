@@ -17,18 +17,18 @@ import com.example.a99794.framework.R;
  * @描述 对话框工具
  **/
 
-public class DialogUtils {
-    private static DialogUtils dialogUtils;
+public class DialogUtil {
+    private static DialogUtil sDialogUtil;
     private static AlertDialog.Builder normalDialog;
 
-    private DialogUtils() {
+    private DialogUtil() {
     }
 
-    public static synchronized DialogUtils getDialogUtils() {
-        if(dialogUtils == null){
-            dialogUtils = new DialogUtils();
+    public static synchronized DialogUtil getDialogUtil() {
+        if(sDialogUtil == null){
+            sDialogUtil = new DialogUtil();
         }
-        return dialogUtils;
+        return sDialogUtil;
     }
     public String showEditDialog(final Activity activity, String title, DialogInterface.OnClickListener negativeButton, DialogInterface.OnClickListener positiveButton){
         final String[] result = {""};

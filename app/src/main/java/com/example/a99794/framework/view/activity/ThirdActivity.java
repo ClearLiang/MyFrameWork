@@ -37,11 +37,11 @@ import rx.functions.Action1;
 
 public class ThirdActivity extends BaseActivity<ThirdViewInterface, ThirdActivityPresenter> implements ThirdViewInterface {
 
-    private Button btnFinger, btnFingerCancel, btnList;
-    FingerprintUtil fingerprintUtil;
-    private int flag = 5;
+    private Button btnFinger, btnFingerCancel;
     private ExpandableListView elv;
 
+    private FingerprintUtil fingerprintUtil;
+    private int flag = 5;
     private ArrayList<Group> gData = null;
     private ArrayList<ArrayList<Item>> iData = null;
     private ArrayList<Item> lData = null;
@@ -65,20 +65,19 @@ public class ThirdActivity extends BaseActivity<ThirdViewInterface, ThirdActivit
     private void initView() {
         btnFinger = findViewById(R.id.btn_activity_main_finger);
         btnFingerCancel = findViewById(R.id.btn_finger_cancel);
-        btnList = findViewById(R.id.btn_list);
         elv = findViewById(R.id.elv);
     }
 
     @Override
     protected void intData() {
         //数据准备
-        gData = new ArrayList<Group>();
-        iData = new ArrayList<ArrayList<Item>>();
+        gData = new ArrayList<>();
+        iData = new ArrayList<>();
         gData.add(new Group("AD"));
         gData.add(new Group("AP"));
         gData.add(new Group("TANK"));
 
-        lData = new ArrayList<Item>();
+        lData = new ArrayList<>();
 
         //AD组
         lData.add(new Item(R.mipmap.iv_lol_icon3,"剑圣"));
@@ -87,7 +86,7 @@ public class ThirdActivity extends BaseActivity<ThirdViewInterface, ThirdActivit
         lData.add(new Item(R.mipmap.iv_lol_icon14,"韦鲁斯"));
         iData.add(lData);
         //AP组
-        lData = new ArrayList<Item>();
+        lData = new ArrayList<>();
         lData.add(new Item(R.mipmap.iv_lol_icon1, "提莫"));
         lData.add(new Item(R.mipmap.iv_lol_icon7, "安妮"));
         lData.add(new Item(R.mipmap.iv_lol_icon8, "天使"));
@@ -95,7 +94,7 @@ public class ThirdActivity extends BaseActivity<ThirdViewInterface, ThirdActivit
         lData.add(new Item(R.mipmap.iv_lol_icon11, "狐狸"));
         iData.add(lData);
         //TANK组
-        lData = new ArrayList<Item>();
+        lData = new ArrayList<>();
         lData.add(new Item(R.mipmap.iv_lol_icon2, "诺手"));
         lData.add(new Item(R.mipmap.iv_lol_icon5, "德邦"));
         lData.add(new Item(R.mipmap.iv_lol_icon6, "奥拉夫"));
@@ -122,12 +121,6 @@ public class ThirdActivity extends BaseActivity<ThirdViewInterface, ThirdActivit
             }
         });
 
-        setClick(btnList, new Action1<Void>() {
-            @Override
-            public void call(Void aVoid) {
-
-            }
-        });
     }
 
     @SuppressLint("NewApi")

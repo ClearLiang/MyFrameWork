@@ -16,21 +16,21 @@ import com.example.a99794.framework.R;
  *@描述 Toast工具类
  **/
 
-public class ToastUtils {
-    private static ToastUtils toastUtils;
+public class ToastUtil {
+    private static ToastUtil sToastUtil;
     private Toast toast;
 
     private static TextView mTextView;
     private static ImageView mImageView;
 
-    private ToastUtils() {
+    private ToastUtil() {
     }
 
-    public static synchronized ToastUtils getToastUtils() {
-        if(toastUtils == null){
-            toastUtils = new ToastUtils();
+    public static synchronized ToastUtil getToastUtil() {
+        if(sToastUtil == null){
+            sToastUtil = new ToastUtil();
         }
-        return toastUtils;
+        return sToastUtil;
     }
 
     public void showLoading(){

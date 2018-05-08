@@ -14,7 +14,7 @@ import com.example.a99794.framework.model.dao.Shop;
 import com.example.a99794.framework.model.dao.ShopDao;
 import com.example.a99794.framework.presenter.FirstFragmentPresenter;
 import com.example.a99794.framework.presenter.viewinterface.FirstFragmentViewInterface;
-import com.example.a99794.framework.utils.DaoUtils;
+import com.example.a99794.framework.utils.DaoUtil;
 import com.example.a99794.framework.view.base.BaseFragment;
 
 import java.util.List;
@@ -75,25 +75,25 @@ public class FirstFragment extends BaseFragment<FirstFragmentViewInterface, Firs
             @Override
             public void call(Void aVoid) {
                 Shop shop = new Shop();shop.setAddress("123" + a);shop.setId((long) 123 + a);shop.setImage_url("123" + a);shop.setName("123" + a);shop.setPrice("123");shop.setSell_num(123 + a);shop.setType(1 + a);
-                DaoUtils.getDaoUtils().insertData(shop);
+                DaoUtil.getDaoUtil().insertData(shop);
                 a++;
             }
         });
         setClick(btnFirstDaoDelete, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                if (DaoUtils.getDaoUtils().checkIsBlank()) {
+                if (DaoUtil.getDaoUtil().checkIsBlank()) {
                     LogUtils.i("123的数据为空");
                 } else {
-                    DaoUtils.getDaoUtils().deleteData(123);
+                    DaoUtil.getDaoUtil().deleteData(123);
                 }
             }
         });
         setClick(btnFirstDaoDeleteAll, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                if (DaoUtils.getDaoUtils().checkIsBlank()) {
-                    DaoUtils.getDaoUtils().deleteDataAll();
+                if (DaoUtil.getDaoUtil().checkIsBlank()) {
+                    DaoUtil.getDaoUtil().deleteDataAll();
                 } else {
                     LogUtils.i("数据为空");
                 }
@@ -103,10 +103,10 @@ public class FirstFragment extends BaseFragment<FirstFragmentViewInterface, Firs
             @Override
             public void call(Void aVoid) {
                 List<Shop> shops;
-                if (DaoUtils.getDaoUtils().checkIsBlank()) {
+                if (DaoUtil.getDaoUtil().checkIsBlank()) {
                     LogUtils.i("数据为空");
                 } else {
-                    shops = DaoUtils.getDaoUtils().queryData(ShopDao.Properties.Id.eq(123));
+                    shops = DaoUtil.getDaoUtil().queryData(ShopDao.Properties.Id.eq(123));
                     if(shops.size() == 0){
                         LogUtils.i("数据123不存在");
                     }else {
@@ -121,10 +121,10 @@ public class FirstFragment extends BaseFragment<FirstFragmentViewInterface, Firs
             @Override
             public void call(Void aVoid) {
                 List<Shop> shops;
-                if (DaoUtils.getDaoUtils().checkIsBlank()) {
+                if (DaoUtil.getDaoUtil().checkIsBlank()) {
                     LogUtils.i("数据为空");
                 } else {
-                    shops = DaoUtils.getDaoUtils().queryAll();
+                    shops = DaoUtil.getDaoUtil().queryAll();
                     for (int i = 0;i<shops.size();i++){
                         LogUtils.i("数据为: Id:"+shops.get(i).getId()+"--Name:"+shops.get(i).getName());
                     }
@@ -135,12 +135,12 @@ public class FirstFragment extends BaseFragment<FirstFragmentViewInterface, Firs
             @Override
             public void call(Void aVoid) {
                 Shop shop = new Shop();
-                shop = DaoUtils.getDaoUtils().queryData(ShopDao.Properties.Id.eq(123)).get(0);
+                shop = DaoUtil.getDaoUtil().queryData(ShopDao.Properties.Id.eq(123)).get(0);
                 shop.setName("asd");
-                if (DaoUtils.getDaoUtils().checkIsBlank()) {
+                if (DaoUtil.getDaoUtil().checkIsBlank()) {
                     LogUtils.i("数据为空");
                 } else {
-                    DaoUtils.getDaoUtils().updateData(shop);
+                    DaoUtil.getDaoUtil().updateData(shop);
                 }
 
             }

@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.EventBus;
  *@描述 EventBus 工具类
  **/
 
-public class EventBusUtils {
+public class EventBusUtil {
     static Handler handler = new Handler();
 
     public static void register(Object subscriber) {

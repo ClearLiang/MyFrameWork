@@ -18,17 +18,17 @@ import com.yzq.zxinglibrary.encode.CodeCreator;
  *@描述 扫描/创建 二维码 工具类
  **/
 
-public class ScanUtils {
-    private static ScanUtils scanUtils;
+public class ScanUtil {
+    private static ScanUtil sScanUtil;
 
-    private ScanUtils() {
+    private ScanUtil() {
     }
 
-    public static synchronized ScanUtils getScanUtils() {
-        if(scanUtils == null){
-            scanUtils = new ScanUtils();
+    public static synchronized ScanUtil getScanUtil() {
+        if(sScanUtil == null){
+            sScanUtil = new ScanUtil();
         }
-        return scanUtils;
+        return sScanUtil;
     }
 
     /**

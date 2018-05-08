@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.a99794.framework.presenter.PayActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.EditCompleListener;
 import com.example.a99794.framework.presenter.viewinterface.PayViewInterface;
-import com.example.a99794.framework.utils.KeyboardUtils;
+import com.example.a99794.framework.utils.KeyboardUtil;
 import com.example.a99794.framework.view.base.BaseActivity;
 import com.example.a99794.framework.view.widget.FontTextView;
 import com.example.a99794.framework.view.widget.PayEdit;
@@ -27,7 +27,7 @@ import rx.functions.Action1;
 
 public class PayActivity extends BaseActivity<PayViewInterface, PayActivityPresenter> implements PayViewInterface {
     private PayEdit payedit;
-    private KeyboardUtils keyboardUtil = null;
+    private KeyboardUtil keyboardUtil = null;
     private FontTextView tvPwDlgCancel;
     private String flag = "0"; // 0设置了密码  1未设置密码
     private AutoRelativeLayout arl1;
@@ -50,7 +50,7 @@ public class PayActivity extends BaseActivity<PayViewInterface, PayActivityPrese
         Intent intent = getIntent();
         flag = intent.getStringExtra("key");
 
-        keyboardUtil = new KeyboardUtils(PayActivity.this, payedit.getCurrentEdit());
+        keyboardUtil = new KeyboardUtil(PayActivity.this, payedit.getCurrentEdit());
         keyboardUtil.setPreviewEnabled(true);
 
         if (flag.equals("1")) {

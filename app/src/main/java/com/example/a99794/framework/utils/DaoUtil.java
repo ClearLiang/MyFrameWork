@@ -14,17 +14,17 @@ import java.util.List;
  *@日期 2018/4/13
  *@描述 数据库操作
  **/
-public class DaoUtils {
-    private static DaoUtils sDaoUtils;
+public class DaoUtil {
+    private static DaoUtil sDaoUtil;
 
-    private DaoUtils() {
+    private DaoUtil() {
     }
 
-    public static synchronized DaoUtils getDaoUtils() {
-        if(sDaoUtils == null){
-            sDaoUtils = new DaoUtils();
+    public static synchronized DaoUtil getDaoUtil() {
+        if(sDaoUtil == null){
+            sDaoUtil = new DaoUtil();
         }
-        return sDaoUtils;
+        return sDaoUtil;
     }
 
     /**

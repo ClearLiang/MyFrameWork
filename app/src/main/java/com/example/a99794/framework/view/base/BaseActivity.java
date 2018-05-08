@@ -11,9 +11,9 @@ import android.widget.EditText;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.example.a99794.framework.utils.AppManager;
-import com.example.a99794.framework.utils.EventBusUtils;
-import com.example.a99794.framework.utils.KeyboardUtils;
-import com.example.a99794.framework.utils.RSAUtils;
+import com.example.a99794.framework.utils.EventBusUtil;
+import com.example.a99794.framework.utils.KeyboardUtil;
+import com.example.a99794.framework.utils.RSAUtil;
 import com.example.a99794.framework.view.widget.keyboard.KeyBoardDialogUtils;
 import com.example.a99794.framework.R;
 import com.jakewharton.rxbinding.view.RxView;
@@ -31,7 +31,7 @@ import rx.functions.Action1;
 abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppCompatActivity implements GlobalConstants{
     protected Bundle mBundle = new Bundle();
     protected T mPresenter;
-    protected KeyboardUtils keyboardUtils;
+    protected KeyboardUtil mKeyboardUtil;
     protected KeyBoardDialogUtils keyBoardDialogUtils;
     protected boolean isTouchEvent = true;
 
@@ -49,19 +49,20 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         // 隐藏软键盘
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         LogUtils.i(getClass().getSimpleName());
+        intData();
 
-        RSAUtils.getRSAUtils().generateRSAKeyPair();
+        RSAUtil.getRSAUtil().generateRSAKeyPair();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         LogUtils.d("onStart");
-        intData();
+
         initEvent();
         //注册EventBus
         if (isRegisterEventBus()) {
-            EventBusUtils.register(this);
+            EventBusUtil.register(this);
         }
     }
 
@@ -83,7 +84,7 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         mPresenter.datachView();
         LogUtils.d("onDestroy");
         AppManager.getAppManager().finishActivity(this);
-        EventBusUtils.unregister(this);
+        EventBusUtil.unregister(this);
     }
 
     protected void openActivity(Class<?> mClass) {
@@ -149,8 +150,8 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 int inputType = editText.getInputType();
                 editText.setInputType(InputType.TYPE_NULL);// 让系统键盘不弹出
-                keyboardUtils = new KeyboardUtils(activity, editText);
-                keyboardUtils.showKeyboard();
+                mKeyboardUtil = new KeyboardUtil(activity, editText);
+                mKeyboardUtil.showKeyboard();
                 editText.setInputType(inputType);
                 return false;
             }
@@ -174,8 +175,8 @@ abstract public class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
 
     /**  隐藏键盘  */
     protected void hideKeyboard() {
-        if(keyboardUtils != null){
-            keyboardUtils.hideKeyboard();
+        if(mKeyboardUtil != null){
+            mKeyboardUtil.hideKeyboard();
         }
         if(keyBoardDialogUtils != null){
             keyBoardDialogUtils.dismiss();

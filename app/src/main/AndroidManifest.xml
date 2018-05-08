@@ -74,6 +74,7 @@
         <service android:name="com.example.a99794.framework.service.RemindService" />
         <service android:name="com.example.a99794.framework.service.BindService" />
         <service android:name="com.example.a99794.framework.service.MyIntentService" />
+        <service android:name=".service.DownloadService" />
 
     </application>
 

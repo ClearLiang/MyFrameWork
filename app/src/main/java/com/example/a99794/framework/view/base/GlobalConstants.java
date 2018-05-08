@@ -11,4 +11,7 @@ public interface GlobalConstants {
     int REQUEST_PAY_CODE    = 1002;   //支付请求码
     int REQUEST_FINGER_CODE = 1003;   //指纹请求码
     String TAG = "信息：";
+
+    String DIRECTORY = "FrameWork";
+    boolean IS_DOWNLOAD = false;
 }

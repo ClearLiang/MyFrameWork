@@ -76,7 +76,7 @@ public class ThirdFragment extends BaseFragment<FirstFragmentViewInterface, Firs
                 ToastUtils.showShort("再次登陆");
             }else {
                 LogUtils.i("超时，请重新登陆");
-                //ToastUtils.showShort("超时，请重新登陆");
+                //ToastUtil.showShort("超时，请重新登陆");
             }
         }
     }

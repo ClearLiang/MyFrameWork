@@ -30,15 +30,6 @@
             android:layout_toRightOf="@+id/btn_activity_main_finger"
             android:text="取消" />
 
-        <Button
-            android:id="@+id/btn_list"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/btn_finger_cancel"
-            android:layout_toRightOf="@+id/btn_finger_cancel"
-            android:text="折叠列表" />
     </com.zhy.autolayout.AutoLinearLayout>
 
 

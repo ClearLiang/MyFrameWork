@@ -1,7 +1,6 @@
 package com.example.a99794.framework.view.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,11 +18,10 @@ import com.example.a99794.framework.R;
 import com.example.a99794.framework.event.Event;
 import com.example.a99794.framework.presenter.MainActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.MainViewInterface;
-import com.example.a99794.framework.service.MyIntentService;
-import com.example.a99794.framework.utils.EventBusUtils;
-import com.example.a99794.framework.utils.NotificationUtils;
-import com.example.a99794.framework.utils.RSAUtils;
-import com.example.a99794.framework.utils.ScanUtils;
+import com.example.a99794.framework.utils.EventBusUtil;
+import com.example.a99794.framework.utils.NotificationUtil;
+import com.example.a99794.framework.utils.RSAUtil;
+import com.example.a99794.framework.utils.ScanUtil;
 import com.example.a99794.framework.view.base.BaseActivity;
 import com.example.a99794.framework.view.widget.CirclePgBar;
 import com.example.a99794.framework.wxapi.Config;
@@ -116,14 +114,14 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         setClick(btnScan, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                ScanUtils.getScanUtils().startScan(MainActivity.this, REQUEST_SCAN_CODE);
+                ScanUtil.getScanUtil().startScan(MainActivity.this, REQUEST_SCAN_CODE);
             }
         });
 
         setClick(btnCreate, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                bitmap = ScanUtils.getScanUtils().startCreate(MainActivity.this, etCreate.getText().toString());
+                bitmap = ScanUtil.getScanUtil().startCreate(MainActivity.this, etCreate.getText().toString());
                 ivMain.setImageBitmap(bitmap);
             }
         });
@@ -141,7 +139,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             public void call(Void aVoid) {
                 byte[] srcData = etCreate.getText().toString().getBytes();
                 LogUtils.i("加密前的东西：" + etCreate.getText().toString());
-                result = RSAUtils.getRSAUtils().processData(srcData, RSAUtils.getRSAUtils().getPublicKey(), Cipher.ENCRYPT_MODE);
+                result = RSAUtil.getRSAUtil().processData(srcData, RSAUtil.getRSAUtil().getPublicKey(), Cipher.ENCRYPT_MODE);
                 resultBefore = new String(result);
                 LogUtils.i("加密后的东西：" + resultBefore);
             }
@@ -152,7 +150,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             public void call(Void aVoid) {
                 String rs = new String(result);
                 LogUtils.i("解密前的东西：" + rs);
-                result1 = RSAUtils.getRSAUtils().processData(result, RSAUtils.getRSAUtils().getPrivateKey(), Cipher.DECRYPT_MODE);
+                result1 = RSAUtil.getRSAUtil().processData(result, RSAUtil.getRSAUtil().getPrivateKey(), Cipher.DECRYPT_MODE);
                 resultAfter = new String(result1);
                 LogUtils.i("解密后的东西：" + resultAfter);
             }
@@ -175,7 +173,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         setClick(btnActivity2, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                EventBusUtils.sendDelayedEvent(new Event(etCreate.getText().toString()));
+                EventBusUtil.sendDelayedEvent(new Event(etCreate.getText().toString()));
                 openActivity(SecondActivity.class);
             }
         });
@@ -188,7 +186,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
                 openService(MyIntentService.class,mBundle);
                 openActivityForResult(PayActivity.class,REQUEST_PAY_CODE,mBundle);*/
 
-                //NotificationUtils.getNotificationUtils(MainActivity.this).showNotification(null,null);
+                //NotificationUtil.getNotificationUtils(MainActivity.this).showNotification(null,null);
 
                 initRemoteViews();
 
@@ -199,12 +197,12 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             @Override
             public void call(Void aVoid) {
                 //openActivity(FirstActivity.class);
-                /*String a = RSAUtils.getRSAUtils().myEncrypt(etCreate.getText().toString());
-                String b = RSAUtils.getRSAUtils().myDecryption(a);
+                /*String a = RSAUtil.getRSAUtil().myEncrypt(etCreate.getText().toString());
+                String b = RSAUtil.getRSAUtil().myDecryption(a);
                 LogUtils.i(a);
                 LogUtils.i(b);*/
 
-                NotificationUtils.getNotificationUtils(MainActivity.this).closeNotification();
+                NotificationUtil.getNotificationUtils(MainActivity.this).closeNotification();
 
             }
         });
@@ -241,7 +239,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         PendingIntent mPendingIntent=PendingIntent.getActivity(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //3.创建一个Notification
-        NotificationUtils.getNotificationUtils(MainActivity.this).showNotification(null,mPendingIntent);
+        NotificationUtil.getNotificationUtils(MainActivity.this).showNotification(null,mPendingIntent);
 
     }
 
@@ -264,7 +262,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         // 指纹验证回传
         else if(requestCode == REQUEST_FINGER_CODE && resultCode == RESULT_OK){
             String content = data.getStringExtra(Constant.CODED_CONTENT);
-            //ToastUtils.showShort("MainActivity收到ThirdActivity结果" + content);
+            //ToastUtil.showShort("MainActivity收到ThirdActivity结果" + content);
             LogUtils.i("MainActivity收到ThirdActivity结果" + content);
         }
 

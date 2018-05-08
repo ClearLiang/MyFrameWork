@@ -2,9 +2,6 @@ package com.example.a99794.framework.utils;
 
 import android.util.Base64;
 
-import com.blankj.utilcode.util.LogUtils;
-
-import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyPair;
@@ -12,7 +9,6 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -25,17 +21,17 @@ import javax.crypto.NoSuchPaddingException;
  * @描述 RSA加解密工具
  **/
 
-public class RSAUtils {
-    private static RSAUtils sRSAUtils;
+public class RSAUtil {
+    private static RSAUtil sRSAUtil;
 
-    private RSAUtils() {
+    private RSAUtil() {
     }
 
-    public static synchronized RSAUtils getRSAUtils() {
-        if(sRSAUtils == null){
-            sRSAUtils = new RSAUtils();
+    public static synchronized RSAUtil getRSAUtil() {
+        if(sRSAUtil == null){
+            sRSAUtil = new RSAUtil();
         }
-        return sRSAUtils;
+        return sRSAUtil;
     }
 
     private static String CIPHER_ALGORITHM = "RSA/ECB/PKCS1Padding"; // 加密算法
