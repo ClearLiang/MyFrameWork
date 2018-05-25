@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="16dp">
+
+    <!--<include
+        layout="@layout/dialog_fingerprint_content" />-->
+    <ImageView
+        android:id="@+id/fingerprint_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/fingerprint_status"
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fingerprint_icon"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="恋尚商城的Touch ID 轻触Home键进行指纹验证"
+        android:textColor="#28bb82"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/tv_password_login"
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
+        android:layout_below="@+id/fingerprint_status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="密码登陆"
+        android:textColor="@color/green"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:gravity="bottom"
+        android:visibility="gone">
+
+        <Space
+            android:id="@+id/spacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"/>
+
+        <Button
+            android:id="@+id/second_dialog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密码登陆"/>
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

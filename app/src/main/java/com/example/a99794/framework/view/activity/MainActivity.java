@@ -19,7 +19,7 @@ import com.example.a99794.framework.R;
 import com.example.a99794.framework.duojimenu.RecyclerViewActivity;
 import com.example.a99794.framework.presenter.MainActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.MainViewInterface;
-import com.example.a99794.framework.testfile.TestActivity;
+import com.example.a99794.framework.testfile.LocationActivity;
 import com.example.a99794.framework.utils.NotificationUtil;
 import com.example.a99794.framework.utils.RSAUtil;
 import com.example.a99794.framework.utils.ScanUtil;
@@ -192,7 +192,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             public void call(Void aVoid) {
                 //EventBusUtil.sendDelayedEvent(new Event(etCreate.getText().toString()));
                 //openActivity(SecondActivity.class);
-                openActivity(TestActivity.class);
+                openActivity(LocationActivity.class);
             }
         });
 

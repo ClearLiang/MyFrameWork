@@ -95,7 +95,7 @@
         <activity
             android:name=".duojimenu.RecyclerViewActivity"
             android:label="RecyclerViewTree"/>
-        <activity android:name=".testfile.TestActivity" />
+        <activity android:name=".testfile.LocationActivity" />
 
         <service
             android:name=".service.RemindService" />

@@ -36,7 +36,7 @@ import com.example.a99794.framework.utils.LocationUtil;
  * @描述 用来测试的界面
  **/
 // TODO: 2018/5/15 测试界面
-public class TestActivity extends AppCompatActivity {
+public class LocationActivity extends AppCompatActivity {
     //百度地图控件
     private MapView mMapView = null;
     //百度地图对象
