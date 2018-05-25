@@ -47,8 +47,8 @@ public class NotificationUtil {
         mNManager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
 
         //定义一个PendingIntent点击Notification后启动一个Activity
-        Intent it = new Intent(mContext, MyNotificationActivity.class);
-        PendingIntent pit = PendingIntent.getActivity(mContext, 0, it, 0);
+        /*Intent it = new Intent(mContext, MyNotificationActivity.class);
+        PendingIntent pit = PendingIntent.getActivity(mContext, 0, it, 0);*/
 
         /**设置图片,通知标题,发送时间,提示方式等属性
         - setContentTitle       设置标题
@@ -73,7 +73,7 @@ public class NotificationUtil {
                 .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE)
                 //.setSound(Uri.parse("android.resource://" + mContext.getPackageName() + "/" + R.raw.biaobiao))  //设置自定义的提示音
                 .setAutoCancel(true)
-                .setContentIntent(pit)
+                .setContentIntent(pendingIntent)
                 .setContent(remoteViews)
                 .build();
 

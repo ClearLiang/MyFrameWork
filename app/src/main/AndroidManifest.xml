@@ -11,23 +11,36 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--允许应用程序改变网络状态-->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <!--允许应用程序改变WIFI连接状态-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!--允许应用程序访问有关的网络信息-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--允许应用程序访问WIFI网卡的网络信息-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!--读取系统信息，包含系统版本等信息，用作统计-->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!--允许sd卡写权限，需写入地图数据，禁用后无法显示地图-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--获取统计数据-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!--地图所需权限-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.example.a99794.framework.view.base.BaseApplication"
+        android:name=".view.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/QMUI.Compat"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="QpNLIH8FE7RALZbtf6OEGV7kWliq9yUC" />
         <!--设计稿尺寸-->
         <meta-data
             android:name="design_width"
@@ -36,7 +49,9 @@
             android:name="design_height"
             android:value="1280" />
 
-        <activity android:name="com.example.a99794.framework.view.activity.MainActivity">
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:persistableMode="persistAcrossReboots">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,36 +60,62 @@
         </activity>
 
         <activity
-            android:name="com.example.a99794.framework.view.activity.FirstActivity" />
+            android:name=".view.activity.FirstActivity" />
         <activity
-            android:name="com.example.a99794.framework.view.activity.SecondActivity" />
+            android:name=".view.activity.SecondActivity" />
 
         <activity
-            android:name="com.example.a99794.framework.view.activity.PayActivity"
+            android:name=".view.activity.PayActivity"
             android:theme="@style/dialog"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
-            android:name="com.example.a99794.framework.view.activity.FragmentActivity" />
+            android:name=".view.activity.FragmentActivity" />
 
         <activity
-            android:name="com.example.a99794.framework.view.activity.MyNotificationActivity" />
+            android:name=".view.activity.MyNotificationActivity" />
 
         <activity
-            android:name="com.example.a99794.framework.view.activity.ThirdActivity" />
+            android:name=".view.activity.ThirdActivity" />
+
+        <activity
+            android:name=".view.activity.FourActivity"/>
+
+        <activity
+            android:name=".view.activity.QMUIActivity"/>
 
         <!-- 微信登陆配置 start -->
         <activity
-            android:name="com.example.a99794.framework.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:theme="@style/wx_login_style"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <!-- 微信登陆配置 end -->
 
-        <service android:name="com.example.a99794.framework.service.RemindService" />
-        <service android:name="com.example.a99794.framework.service.BindService" />
-        <service android:name="com.example.a99794.framework.service.MyIntentService" />
-        <service android:name=".service.DownloadService" />
+        <activity
+            android:name=".duojimenu.RecyclerViewActivity"
+            android:label="RecyclerViewTree"/>
+        <activity android:name=".testfile.TestActivity" />
+
+        <service
+            android:name=".service.RemindService" />
+        <service
+            android:name=".service.BindService" />
+        <service
+            android:name=".service.MyIntentService" />
+        <service
+            android:name=".service.DownloadService" />
+        <service
+            android:name=".service.DownloadTaskService"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+
 
     </application>
 

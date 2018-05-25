@@ -2,17 +2,36 @@ package com.example.a99794.framework.utils;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 
+import android.os.Build;
 import android.os.CancellationSignal;
+import android.preference.PreferenceManager;
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyProperties;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.LogUtils;
+
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.cert.CertificateException;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  * @作者 ClearLiang
@@ -22,6 +41,7 @@ import com.blankj.utilcode.util.LogUtils;
  **/
 
 public class FingerprintUtil {
+
     /*private static FingerprintUtil sFingerprintUtil;
 
     private FingerprintUtil() {
@@ -34,23 +54,24 @@ public class FingerprintUtil {
         return sFingerprintUtil;
     }*/
 
-    FingerprintManagerCompat mFingerprintManagerCompat;
     FingerprintManager manager;
     KeyguardManager mKeyManager;
+    private CancellationSignal mCancellationSignal;
 
     private Context mContext;
 
     private int flag = 5;
 
-    public boolean setFinger(Context context){
+    @SuppressLint("ServiceCast")
+    public boolean initFinger(Context context){
         mContext = context;
 
         manager = (FingerprintManager) mContext.getSystemService(Context.FINGERPRINT_SERVICE);
         mKeyManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        mCancellationSignal = new CancellationSignal();
 
         if (isFinger()) {
-            //Toast.makeText(mContext, "请进行指纹识别", Toast.LENGTH_LONG).show();
-            LogUtils.i("可以");
+            LogUtils.i("可以进行指纹识别");
             //startListening(null);
             return true;
         }
@@ -75,7 +96,7 @@ public class FingerprintUtil {
         return true;
     }
 
-    private CancellationSignal mCancellationSignal = new CancellationSignal();
+
 
     //回调方法
     /*@SuppressLint("NewApi")
@@ -127,12 +148,19 @@ public class FingerprintUtil {
             Toast.makeText(mContext, "没有指纹识别权限", Toast.LENGTH_SHORT).show();
             return;
         }
-        manager.authenticate(null, mCancellationSignal, 0, mSelfCancelled, null);
+        try {
+            manager.authenticate(null, mCancellationSignal, 0, mSelfCancelled, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void closeFinger(){
-        mCancellationSignal.cancel();
+        if (mCancellationSignal != null) {
+            mCancellationSignal.cancel();
+            mCancellationSignal = null;
+        }
     }
 
 }

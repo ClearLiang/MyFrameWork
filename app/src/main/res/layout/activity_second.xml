@@ -42,4 +42,10 @@
         android:layout_toRightOf="@+id/button2"
         android:text="Popup" />
 
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_below="@id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
 </com.zhy.autolayout.AutoRelativeLayout>

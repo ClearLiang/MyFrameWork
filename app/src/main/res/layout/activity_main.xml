@@ -71,7 +71,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="进度条" />
+            android:text="多级菜单" />
+
+        <Button
+            android:id="@+id/btn_qmui"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="QMUI" />
 
     </com.zhy.autolayout.AutoLinearLayout>
 
@@ -88,6 +95,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="第二个activity" />
+
+        <Button
+            android:id="@+id/btn_activity_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="第四个activity"/>
 
         <Button
             android:id="@+id/btn_fragment"

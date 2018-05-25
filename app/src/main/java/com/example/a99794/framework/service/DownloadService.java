@@ -17,7 +17,7 @@ import com.example.a99794.framework.view.base.GlobalConstants;
 
 public class DownloadService extends Service {
     private String downUrl;
-    RemoteViews remoteViews;
+    private DownloadUtil downloadUtil;
 
     @Nullable
     @Override
@@ -33,7 +33,7 @@ public class DownloadService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         downUrl = intent.getStringExtra("downUrl");
-        DownloadUtil downloadUtil = new DownloadUtil(this,true);
+        downloadUtil = new DownloadUtil(this,true);
         downloadUtil.downLoadFile(downUrl,"qq.exe", GlobalConstants.DIRECTORY);
         return super.onStartCommand(intent, flags, startId);
     }

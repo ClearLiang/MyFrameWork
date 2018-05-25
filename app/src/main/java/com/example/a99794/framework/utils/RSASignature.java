@@ -77,7 +77,8 @@ public class RSASignature {
     }
 
     public static boolean doCheck(String content, String sign, String publicKey) {
-        try {
+        return doCheck(content, sign, publicKey,"UTF-8");
+        /*try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             byte[] encodedKey = Base64.decode(publicKey, Base64.DEFAULT);
             PublicKey pubKey = keyFactory.generatePublic(new X509EncodedKeySpec(encodedKey));
@@ -90,7 +91,7 @@ public class RSASignature {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }
+        }*/
     }
 
 }

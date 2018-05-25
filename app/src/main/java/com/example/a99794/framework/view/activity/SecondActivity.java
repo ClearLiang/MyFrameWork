@@ -19,6 +19,9 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationData;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.a99794.framework.R;
@@ -52,6 +55,7 @@ import rx.functions.Action1;
 public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActivityPresenter> implements SecondViewInterface {
     private TextView tvActivitySecond;
     private Button button,button2,button3;
+    private MapView mMapView = null;
 
     private Context mContext;
     private BindService service = null;
@@ -62,9 +66,6 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
     final private int GREEN = 111;
     final private int BLUE = 112;
     final private int YELLOW = 113;
-    final private int GRAY= 114;
-    final private int CYAN= 115;
-    final private int BLACK= 116;
 
     private ServiceConnection conn = new ServiceConnection() {
         @Override
@@ -141,9 +142,10 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_second);
         mContext = SecondActivity.this;
-
+        initLocation();
         initView();
 
     }
@@ -154,9 +156,7 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
         menu.add(1,GREEN,   2,"绿色");
         menu.add(1,BLUE,    3,"蓝色");
         menu.add(1,YELLOW,  4,"黄色");
-        menu.add(1,GRAY,    5,"灰色");
-        menu.add(1,CYAN,    6,"蓝绿色");
-        menu.add(1,BLACK,   7,"黑色");
+
         return true;
     }
 
@@ -180,15 +180,6 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
             case YELLOW:
                 ToastUtils.showShort("黄色");
                 break;
-            case GRAY:
-                ToastUtils.showShort("灰色");
-                break;
-            case CYAN:
-                ToastUtils.showShort("青色");
-                break;
-            case BLACK:
-                ToastUtils.showShort("黑色");
-                break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -210,7 +201,7 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
             }
         });
 
-        popupWindow.showAsDropDown(v,0,0, Gravity.LEFT);
+        popupWindow.showAsDropDown(v,0,0, Gravity.CENTER);
 
         //设置popupWindow里的按钮的事件
         final TextView tv_popup_1 = view.findViewById(R.id.tv_popup_1);
@@ -239,6 +230,12 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
         button3 = findViewById(R.id.button3);
     }
 
+    private void initLocation(){
+        //获取地图控件引用
+        mMapView = findViewById(R.id.bmapView);
+
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
         tvActivitySecond.setText(event.getMessage());
@@ -248,4 +245,27 @@ public class SecondActivity extends BaseActivity<SecondViewInterface, SecondActi
     protected boolean isRegisterEventBus() {
         return true;
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
+        mMapView.onDestroy();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
+        mMapView.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
+        mMapView.onPause();
+    }
+
+
+
 }

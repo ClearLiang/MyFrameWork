@@ -1,0 +1,64 @@
+
+多级列表的实现方法:
+
+(1)创建数据bean(包含一些属性信息);
+
+(2)转化为树节点TreeNode(id,parentId,bean);
+
+(3)用所有的树节点构建一棵树包括(根节点和其他节点);
+
+(4)Adapter的实现:
+
+    1)创建两个节点列表,一个保存list要显示的节点(showList),一个保存所有的节点(cache);
+
+    2)初始化是显示根节点;
+
+    3)每次的展开与收缩都是将被点击的节点的展开状态设为相反状态;
+
+    4)每次展开都是将所有的根节点和父节点为展开状态的节点设配到ListView中(清空showList,在cache中找到相应节点放到showList中);
+
+    5)在收缩方法中要注意把要收缩节点的子节点都从showList删去;
+
+    6)在adapter类中调用notifyOnDatasetChanged()方法;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+断点续传的实现方法：
+
+(1) 通过 RandomAccessFile raf = new RandomAccessFile(File file,String mode); 进行文件存储
+    通过 OutputStream和File 进行数据存储不能进行断点续传，File转为RandomAccessFile
+    模式mode一般用”rw”读写、”r”读。
+
+(2) 根据路径获取已经下载了的文件大小，从而获取断点时的长度 downloadLength
+
+(3) Request request = new Request.Builder()
+                    .addHeader("RANGE","bytes="+downloadLength+"-")  //断点续传要用到的，指示下载的区间
+                    .url(downloadUrl)
+                    .build();
+
+(4) raf.seek(downloadLength);//跳过已经下载的字节
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+手势操作：
+
+(1) 手指触碰屏幕时，触发MotionEvent事件！
+
+(2) 该事件被OnTouchListener监听，可在它的onTouch()方法中获得该MotionEvent对象！
+
+(3) 通过GestureDetector转发MotionEvent对象给OnGestureListener
+
+(4) 我们可以通过OnGestureListener获得该对象，然后获取相关信息，以及做相关处理！
+
+    MyGestureListener mMyGestureListener = new MyGestureListener();
+    GestureDetector mDetector = new GestureDetector(this, mMyGestureListener);
+
+    在 onTouchEvent 中返回 return mDetector.onTouchEvent(event);
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+密码
+
+(1) 初始化KeyStore        KeyStore mKeyStore = KeyStore.getInstance("AndroidKeyStore");
+(2) 初始化KeyGenerator    KeyGenerator mKeyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
+(3) 初始化Cipher          Cipher defaultCipher = Cipher.getInstance(KeyProperties.KEY_ALGORITHM_AES + "/"
+                                            + KeyProperties.BLOCK_MODE_CBC + "/"
+                                            + KeyProperties.ENCRYPTION_PADDING_PKCS7);
+(4)

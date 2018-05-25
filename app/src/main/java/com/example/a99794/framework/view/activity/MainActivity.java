@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,20 +16,15 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.a99794.framework.R;
-import com.example.a99794.framework.event.Event;
+import com.example.a99794.framework.duojimenu.RecyclerViewActivity;
 import com.example.a99794.framework.presenter.MainActivityPresenter;
 import com.example.a99794.framework.presenter.viewinterface.MainViewInterface;
-import com.example.a99794.framework.utils.EventBusUtil;
+import com.example.a99794.framework.testfile.TestActivity;
 import com.example.a99794.framework.utils.NotificationUtil;
 import com.example.a99794.framework.utils.RSAUtil;
 import com.example.a99794.framework.utils.ScanUtil;
 import com.example.a99794.framework.view.base.BaseActivity;
 import com.example.a99794.framework.view.widget.CirclePgBar;
-import com.example.a99794.framework.wxapi.Config;
-
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.yzq.zxinglibrary.common.Constant;
 
 import javax.crypto.Cipher;
@@ -38,7 +34,8 @@ import rx.functions.Action1;
 public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPresenter> implements MainViewInterface {
     private Button btnScan, btnCreate, btnLoginOther, btnFinger,
             btnEncryption, btnDecryption, btnProgressbar,
-            btnNext, btnActivity2, btn1, btn2;
+            btnNext, btnActivity2, btnActivity3, btn1, btn2,
+            btnQmui;
     private TextView tvScanResult;
     private ImageView ivMain;
     private Bitmap bitmap;
@@ -49,12 +46,12 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
 
     private CirclePgBar mCirclePgBar;
 
+    private int a = 1;
+
     /**
      * 微信登录相关
      */
-    private IWXAPI api;
-
-
+    //private IWXAPI api;
     @Override
     protected MainActivityPresenter createPresenter() {
         return new MainActivityPresenter(this);
@@ -67,13 +64,29 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
 
         initView();
         initLoginOther();
+
+        if (savedInstanceState != null) {
+            LogUtils.i("数据：" + savedInstanceState.getString("data"));
+        }
+        send(a);
+        LogUtils.e("信息："+a);
+    }
+
+    private void send(int a) {
+        a = 2;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putString("data", "我是数据");
     }
 
     private void initLoginOther() {
-        //通过WXAPIFactory工厂获取IWXApI的示例
-        api = WXAPIFactory.createWXAPI(this, Config.APP_ID_WX,true);
+        /*//通过WXAPIFactory工厂获取IWXApI的示例
+        api = WXAPIFactory.createWXAPI(this, Config.APP_ID_WX, true);
         //将应用的appid注册到微信
-        api.registerApp(Config.APP_ID_WX);
+        api.registerApp(Config.APP_ID_WX);*/
     }
 
     // 需要注册EventBus时，返回true
@@ -90,6 +103,7 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         btnEncryption = findViewById(R.id.btn_encryption);
         btnDecryption = findViewById(R.id.btn_decryption);
         btnActivity2 = findViewById(R.id.btn_activity_2);
+        btnActivity3 = findViewById(R.id.btn_activity_3);
         btnNext = findViewById(R.id.btn_fragment);
         etCreate = findViewById(R.id.et_create);
         tvScanResult = findViewById(R.id.tv_scan_result);
@@ -98,6 +112,8 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         btnFinger = findViewById(R.id.btn_finger);
         mCirclePgBar = findViewById(R.id.circle_pgbar);
         btnProgressbar = findViewById(R.id.btn_progressbar);
+        btnQmui = findViewById(R.id.btn_qmui);
+
     }
 
     @Override
@@ -159,7 +175,8 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         setClick(btnProgressbar, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                mCirclePgBar.setTargetProgress(Integer.parseInt(etCreate.getText().toString()));
+                openActivity(RecyclerViewActivity.class);
+                //mCirclePgBar.setTargetProgress(Integer.parseInt(etCreate.getText().toString()));
             }
         });
 
@@ -173,8 +190,16 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
         setClick(btnActivity2, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                EventBusUtil.sendDelayedEvent(new Event(etCreate.getText().toString()));
-                openActivity(SecondActivity.class);
+                //EventBusUtil.sendDelayedEvent(new Event(etCreate.getText().toString()));
+                //openActivity(SecondActivity.class);
+                openActivity(TestActivity.class);
+            }
+        });
+
+        setClick(btnActivity3, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                openActivity(FourActivity.class);
             }
         });
 
@@ -211,10 +236,11 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             @Override
             public void call(Void aVoid) {
                 // send oauth request
-                SendAuth.Req req = new SendAuth.Req();
+                /*SendAuth.Req req = new SendAuth.Req();
                 req.scope = "snsapi_userinfo";
                 req.state = "wechat_sdk_demo_test";
-                api.sendReq(req);
+                api.sendReq(req);*/
+
             }
         });
 
@@ -222,24 +248,31 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             @Override
             public void call(Void aVoid) {
                 //openActivity(ThirdActivity.class);
-                openActivityForResult(ThirdActivity.class,REQUEST_FINGER_CODE);
+                openActivityForResult(ThirdActivity.class, REQUEST_FINGER_CODE);
+            }
+        });
+
+        setClick(btnQmui, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                openActivity(QMUIActivity.class);
             }
         });
 
     }
 
-    private void initRemoteViews(){
+    private void initRemoteViews() {
         //1.创建RemoteViews实例
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget_remote);
-        remoteViews.setTextViewText(R.id.tv_widget_remote_1, "123456qwerty" );
+        remoteViews.setTextViewText(R.id.tv_widget_remote_1, "123456qwerty");
         remoteViews.setImageViewResource(R.id.imageView3, R.drawable.qmui_icon_checkbox_checked);
 
         //2.构建一个打开Activity的PendingIntent
-        Intent intent=new Intent(MainActivity.this,MainActivity.class);
-        PendingIntent mPendingIntent=PendingIntent.getActivity(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //3.创建一个Notification
-        NotificationUtil.getNotificationUtils(MainActivity.this).showNotification(null,mPendingIntent);
+        NotificationUtil.getNotificationUtils(MainActivity.this).showNotification(null, mPendingIntent);
 
     }
 
@@ -260,10 +293,10 @@ public class MainActivity extends BaseActivity<MainViewInterface, MainActivityPr
             ToastUtils.showShort("MainActivity收到PayActivity结果：" + content);
         }
         // 指纹验证回传
-        else if(requestCode == REQUEST_FINGER_CODE && resultCode == RESULT_OK){
+        else if (requestCode == REQUEST_FINGER_CODE && resultCode == RESULT_OK) {
             String content = data.getStringExtra(Constant.CODED_CONTENT);
             //ToastUtil.showShort("MainActivity收到ThirdActivity结果" + content);
-            LogUtils.i("MainActivity收到ThirdActivity结果" + content);
+            LogUtils.i("MainActivity收到ThirdActivity结果:" + content);
         }
 
 
